@@ -1,3 +1,6 @@
+/*I tried to solve my homework but that doesn't work how i expected* i dont understand why
+i would very grateful if you can tell me my mistakes */
+
 $(document).ready(function() {
 
     var userListBody = $('.userList tbody');
@@ -7,13 +10,16 @@ $(document).ready(function() {
 
     $('.needs-validation').submit(function(event) {
 
-        event.preventDefault();
-        event.stopPropagation();
+        event.preventDefault(); /* notifies the user agent that if the event is not explicitly handled,
+        The standard action should not be carried out as usual.
+            The event continues as usual unless one of its event listeners calls stopPropagation () or stopImmediatePropagation (), both of which stop sharing immediately */
+
+        event.stopPropagation(); /* event.stop Propagation prevents an event in the DOM tree from traveling up and triggering actions on other elements */
 
         if (this.checkValidity() === false) {
-
+            // Returns true if an input element contains valid data
             $(this).addClass('was-validated');
-
+            // Adds the class .was-validated to the .needs validation with the value-invalid
             return false;
         }
 
@@ -30,6 +36,29 @@ $(document).ready(function() {
         return false;
     });
 
+    const users = document.getElementById("Username");
+    const newUser = User.value;
+    userListBody . push ( newUser ) ;      // new user belongs to the array
+    const length = userListBody.length;    // Read the length of the array
+
+
+    const table = document.getElementById("list-User");
+
+    // Numbers indicate a position the row is new. Cell is drawn in
+    const row = table.insertRow(-1);  // belongs to new row, value of -1: which causes the new one to be inserted at the last position
+    const cell1 = row.insertCell(0);    // A value of 0 means that the new cell is inserted at the first position
+    const cell2= row.insertCell(1);
+    const cell3= row.insertCell(2);
+
+    // The delete button should manage itself in the third cell
+    cell1 . insideHTML  =  length ;          // Play length of the array
+    cell2 . insideHTML  =  newUser ;          // new user experienced
+
+    cell3 . insideHTML  =  <button type ="button" class =" btn btn-secondary btn-dangerouslySetInnerHTML deleteTrigger "title =" delete "><i class =" fa fa-trash "> </ i > </ button>
+
+    document . getElementById ( "form" ) . reset ( ) ;
+    return  false ;
+} ) ;
 
     $('.deleteTrigger').click(function() {
         //@todo
@@ -38,9 +67,15 @@ $(document).ready(function() {
 
         //your code follows here
 
+        const table = document.getElementById("list_User");
+        const index = document.getElementById("Position").value;
+        let userListBody;
+        const length = userListBody.Length;
+        const row = table.deleteRow(Length);
 
-    });
+
+    } ) ;
 
     //maybe some code follows here
 
-});
+} );
